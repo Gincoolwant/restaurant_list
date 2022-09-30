@@ -18,6 +18,12 @@ app.get('/restaurants/:restaurant_id', (req, res) => {
   res.render('show', { restaurant: restaurant})
 })
 
+app.get('/search', (req, res) => {
+  const keyword = req.query.keyword
+  const restaurant = restaurantList.results.filter(restaurant => restaurant.name.toLowerCase().includes(keyword.toLowerCase()))
+  res.render('index', { restaurant: restaurant, keyword: keyword.toLowerCase() })
+})
+
 app.listen(port, () =>{
   console.log(`connetcting to http://localhost:3000`)
 })
