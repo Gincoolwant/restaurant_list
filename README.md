@@ -16,7 +16,7 @@
 3. 開啟Terminal並移至專案資料夾安裝使用套件： `npm install`
 4. 執行專案： `npm run start`
 
-成功連線會看見訊息： ***connecting to http://localhost:3000***，請開啟瀏覽器輸入網址: http://localhost:3000 進入首頁
+成功連線會看見訊息： `connecting to http://localhost:3000`，請開啟瀏覽器輸入網址: http://localhost:3000 進入首頁
 
 
 ## 開發環境與工具

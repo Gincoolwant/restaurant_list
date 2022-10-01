@@ -31,5 +31,5 @@ app.get('/search', (req, res) => {
 })
 
 app.listen(port, () =>{
-  console.log(`connetcting to http://localhost:3000`)
+  console.log(`connecting to http://localhost:3000`)
 })
