@@ -3,11 +3,20 @@ const app = express()
 const port = 3000
 const restaurantList = require('./restaurant.json')
 
+// 使用Mongoose與MongoDB連線
+const mongoose = require('mongoose')
+mongoose.connect(process.env.MONGODB_URI_restaurant_list, { useNewUrlParser: true, useUnifiedTopology: true })
+// 取得連線資訊
+const db = mongoose.connection
+// 監聽連線狀況
+db.on('error', () => console.log('mongodb error'))
+db.once('open', () => console.log('mongodb is connecting'))
+
+// 使用template engine
 const exphbs = require('express-handlebars')
 app.engine('handlebars', exphbs({ defaultLayout: 'main' })) // 定義模板引擎, (ext:.handlebars, 設定初始layout: main.handlebars)
 app.set('view engine', 'handlebars') // express設置註冊模板引擎
-
-app.use(express.static('public'))
+app.use(express.static('public')) // 告訴express每次先讀取靜態檔的位置
 
 app.get('/', (req, res) => {
   res.render('index', { restaurant: restaurantList.results})
