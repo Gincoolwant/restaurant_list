@@ -22,29 +22,42 @@ app.set('view engine', 'handlebars') // express設置註冊模板引擎
 app.use(express.static('public')) // 告訴express每次先讀取靜態檔的位置
 
 app.get('/', (req, res) => {
-  Restaurant.find()
+  // render所有restaurants
+  return Restaurant.find()
     .lean()
-    .then(restaurant => res.render('index', { restaurant }))
+    .then(restaurants => res.render('index', { restaurants }))
     .catch(error => console.error(error))
 })
 
-// app.get('/restaurants/:restaurant_id', (req, res) => {
-//   const restaurant = restaurantList.find(restaurant => restaurant.id.toString() === req.params.restaurant_id)
-//   res.render('show', { restaurant })
-// })
+app.get('/restaurants/:restaurant_id', (req, res) => {
+  const restaurantId = req.params.restaurant_id
+  // render特定_id restaurant show頁面 
+  return Restaurant.findById(restaurantId)
+    .lean()
+    .then(restaurant => res.render('show', { restaurant }))
+    .catch(error => console.error(error))
+})
 
-// app.get('/search', (req, res) => {
-//   const keyword = req.query.keyword.trim()
-//   const restaurant = restaurantList.filter(restaurant => restaurant.name.toLowerCase().includes(keyword.toLowerCase()) || restaurant.category.includes(keyword))
+app.get('/search', (req, res) => {
+  const keyword = req.query.keyword.trim()
+  return Restaurant.find()
+    .lean()
+    .then(restaurants => {
+      // 先打包所有restaurants再過濾包含keyword的list
+      const filterRestaurants = restaurants.filter(restaurant => restaurant.name.toLowerCase().includes(keyword.toLowerCase()) || restaurant.category.includes(keyword))
+      
+      // render搜尋結果，若無符合結果render無符合頁面 
+      if (filterRestaurants.length) {
+        res.render('index', { restaurants: filterRestaurants, keyword })
+      } else {
+        res.render('noMatchCase', { keyword })
+      }
 
-//   if(restaurant.length){
-//     res.render('index', { restaurant, keyword })
-//   }else{
-//     res.render('noMatchCase', {keyword })
-//   }
-  
-// })
+    })
+    .catch(error => console.error(error))
 
-app.listen(port, () =>{
+})
+
+app.listen(port, () => {
   console.log(`connecting to http://localhost:3000`)
 })
