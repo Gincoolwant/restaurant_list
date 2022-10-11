@@ -25,7 +25,7 @@ app.use(express.static('public')) // 告訴express每次先讀取靜態檔的位
 // 引用 body - parser
 const bodyParser = require('body-parser')
 // 用 app.use 規定每一筆請求都需要透過 body-parser 進行前置處理
-app.use(bodyParser.urlencoded({ extended: true}))
+app.use(bodyParser.urlencoded({ extended: true }))
 
 app.get('/', (req, res) => {
   // render所有restaurants
@@ -63,6 +63,36 @@ app.get('/restaurants/:restaurant_id', (req, res) => {
     .catch(error => console.error(error))
 })
 
+app.get('/restaurants/:restaurant_id/edit', (req, res) => {
+  const restaurantId = req.params.restaurant_id
+  // render特定_id restaurant show頁面 
+  return Restaurant.findById(restaurantId)
+    .lean()
+    .then(restaurant => res.render('edit', { restaurant }))
+    .catch(error => console.error(error))
+})
+
+app.post('/restaurants/:restaurant_id/edit', (req, res) => {
+  const restaurantId = req.params.restaurant_id
+  // render特定_id restaurant show頁面 
+  return Restaurant.findById(restaurantId)
+    .then(restaurant => {
+      restaurant.name = req.body.name
+      restaurant.category = req.body.category
+      restaurant.image = req.body.image ? req.body.image : 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/450px-No_image_available.svg.png'
+      restaurant.location = req.body.location
+      restaurant.phone = req.body.phone
+      restaurant.google_map = req.body.google_map
+      restaurant.rating = req.body.rating
+      restaurant.description = req.body.description
+
+      return restaurant.save()
+    })
+    .then(() => res.redirect(`/restaurants/${restaurantId}`))
+    .catch(error => console.error(error))
+})
+
+
 app.get('/search', (req, res) => {
   const keyword = req.query.keyword.trim()
   return Restaurant.find()
@@ -70,7 +100,7 @@ app.get('/search', (req, res) => {
     .then(restaurants => {
       // 先打包所有restaurants再過濾包含keyword的list
       const filterRestaurants = restaurants.filter(restaurant => restaurant.name.toLowerCase().includes(keyword.toLowerCase()) || restaurant.category.includes(keyword))
-      
+
       // render搜尋結果，若無符合結果render無符合頁面 
       if (filterRestaurants.length) {
         res.render('index', { restaurants: filterRestaurants, keyword })

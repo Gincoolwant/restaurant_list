@@ -21,13 +21,13 @@
 <!-- restaurant list -->
 <div class="container mt-3">
   <div id="tool-bar">
-    <a class="btn btn-primary" href="/restaurants/new" role="button"  id="createBtn">
+    <a class="btn btn-warning text-black" href="/restaurants/new" role="button"  id="createBtn">
       <i class="fa-solid fa-square-plus"></i><span> 新增餐廳</span>
     </a>
   </div>
   <div class="row mt-3">
     {{#each restaurants}}
-    <div class="col-md-4">
+    <div class="col-sm-4">
       <a href="/restaurants/{{this._id}}" class="text-secondary">
         <div class="card mb-3">
           <img class="card-img-top" src="{{this.image}}" alt="{{this.name}}">
@@ -44,8 +44,14 @@
             </span>
 
           </div>
+          <div class="card-footer text-end pe-2">
+            <a href="/restaurants/{{ this._id }}/edit" class="btn btn-warning me-2">Edit</a>
+            <a href="/restaurants/{{this._id}}" class="btn btn-warning me-2">Detail</a>
+            <a href="/delete" class="btn btn-danger">Delete</a>
+          </div>
         </div>
       </a>
+      
     </div>
     {{/each}}
   </div>
