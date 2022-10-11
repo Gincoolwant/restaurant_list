@@ -1,13 +1,18 @@
 # 我的餐廳清單
-練習使用Node.js & Express架設附有瀏覽清單、查看詳細資訊與查詢功能的美食餐廳清單網站。
+練習使用Node.js & Express架設附有瀏覽清單、查看詳細資訊與查詢/編輯/刪除功能的美食餐廳清單網站。
 
 ![index](./public/images/index.png)
 ![show](./public/images/show.png)
+![create](./public/images/create.png)
+![edit](./public/images/edit.png)
 
 ## 功能詳情
 + 可在首頁看到附有簡易資訊(店名、餐廳類型、評分)的餐廳清單列表。
 + 點擊餐廳可檢視詳細資訊(店名、餐廳類型、地址、地圖資訊-via google map、電話、簡介)。
 + 可透過店名及餐廳類型進行關鍵字搜尋。
++ 可新增餐廳。
++ 可編輯餐廳內容。
++ 可刪除餐廳。
 
 ## 安裝執行
 1. 確認安裝node.js & npm。
