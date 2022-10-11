@@ -92,6 +92,14 @@ app.post('/restaurants/:restaurant_id/edit', (req, res) => {
     .catch(error => console.error(error))
 })
 
+app.get('/restaurants/:restaurant_id/delete', (req, res) => {
+  const restaurantId = req.params.restaurant_id
+  // render特定_id restaurant show頁面 
+  return Restaurant.findById(restaurantId)
+    .then(restaurant => restaurant.remove())
+    .then(() => res.redirect(`/`))
+    .catch(error => console.error(error))
+})
 
 app.get('/search', (req, res) => {
   const keyword = req.query.keyword.trim()
