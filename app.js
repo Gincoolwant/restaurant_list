@@ -3,6 +3,7 @@ const app = express()
 const port = 3000
 const Restaurant = require('./models/restaurant')
 
+
 // 使用Mongoose與MongoDB連線
 // 載入 mongoose
 const mongoose = require('mongoose')
@@ -21,11 +22,35 @@ app.engine('handlebars', exphbs({ defaultLayout: 'main' })) // 定義模板引�
 app.set('view engine', 'handlebars') // express設置註冊模板引擎
 app.use(express.static('public')) // 告訴express每次先讀取靜態檔的位置
 
+// 引用 body - parser
+const bodyParser = require('body-parser')
+// 用 app.use 規定每一筆請求都需要透過 body-parser 進行前置處理
+app.use(bodyParser.urlencoded({ extended: true}))
+
 app.get('/', (req, res) => {
   // render所有restaurants
   return Restaurant.find()
     .lean()
     .then(restaurants => res.render('index', { restaurants }))
+    .catch(error => console.error(error))
+})
+
+app.get('/restaurants/new', (req, res) => {
+  return res.render('new')
+})
+
+app.post('/new', (req, res) => {
+  return Restaurant.create({
+    name: req.body.name,
+    category: req.body.category,
+    image: req.body.image ? req.body.image : 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/450px-No_image_available.svg.png',
+    location: req.body.location,
+    phone: req.body.phone,
+    google_map: req.body.google_map,
+    rating: req.body.rating,
+    description: req.body.description
+  })
+    .then(() => res.redirect('/'))
     .catch(error => console.error(error))
 })
 

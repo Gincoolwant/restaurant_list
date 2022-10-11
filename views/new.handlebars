@@ -1,0 +1,114 @@
+<!-- restaurant detail -->
+<h1 class="mb-1 restaurant-show-title">新增餐廳</h1>
+<div class="container d-flex justify-content-center">
+  <form action="/new" method="POST">
+    <div class="row mt-2">
+      <div class="col-5 text-center">
+        <label for="name" class="col-form-label">名稱</label>
+      </div>
+      <div class="col-7">
+        <input type="text" id="name" class="form-control" name="name" placeholder="請填入餐廳名稱..." required>
+      </div>
+    </div>
+
+    <div class="row mt-3">
+      <div class="col-5 text-center">
+        <label for="name_en" class="col-form-label">英文名稱</label>
+      </div>
+      <div class="col-7">
+        <input type="text" id="name_en" class="form-control" name="name_en" placeholder="請填入餐廳英文名稱...">
+      </div>
+    </div>
+
+
+    <div class="row mt-3">
+      <div class="col-5 text-center">
+        <label for="category" class="form-label">餐廳類型</label>
+      </div>
+      <div class="col-7">
+        <input class="form-control" list="categoryOptions" id="category" name="category" placeholder="請選擇/填入餐廳類型..."
+          required>
+        <datalist id="categoryOptions">
+          <option value="台式料理">
+          <option value="中式料理">
+          <option value="印度料理">
+          <option value="日式料理">
+          <option value="韓式料理">
+          <option value="義式料理">
+          <option value="歐式料理">
+          <option value="美式料理">
+          <option value="中東料理">
+          <option value="咖啡廳">
+          <option value="飲料">
+          <option value="酒吧">
+          <option value="其他(請自行輸入)">
+        </datalist>
+      </div>
+    </div>
+
+    <div class="row mt-3">
+      <div class="col-5 text-center">
+        <label for="image" class="col-form-label">圖片網址</label>
+      </div>
+      <div class="col-7">
+        <input type="text" id="image" name="image" class="form-control" placeholder="請填入圖片網址...">
+      </div>
+    </div>
+
+    <div class="row mt-3">
+      <div class="col-5 text-center">
+        <label for="location" class="col-form-label">地址</label>
+      </div>
+      <div class="col-7">
+        <input type="text" id="location" name="location" class="form-control" placeholder="請填入地址..." required>
+      </div>
+    </div>
+
+    <div class="row mt-3">
+      <div class="col-5 text-center">
+        <label for="phone" class="col-form-label">電話</label>
+      </div>
+      <div class="col-7">
+        <input type="text" id="phone" name="phone" class="form-control" placeholder="請填入電話號碼...">
+      </div>
+    </div>
+
+    <div class="row mt-3">
+      <div class="col-5 text-center">
+        <label for="google_map" class="col-form-label">Google Map</label>
+      </div>
+      <div class="col-7">
+        <input type="text" id="google_map" name="google_map" class="form-control" placeholder="請填入Google Map連結...">
+      </div>
+    </div>
+
+    <div class="row mt-3">
+      <div class="col-5 text-center">
+        <label for="rating" class="col-form-label">餐廳評分
+      </div>
+      <div class="col-7">
+        <input type="number" step="0.1" min="0" max="5" id="rating" name="rating" class="form-control" name="rating"
+          placeholder="請填入餐廳評分(0~5)..." required>
+      </div>
+    </div>
+
+    <div class="row mt-3">
+      <div class="col-5 text-center">
+        <label for="description" class="col-form-label">餐廳簡介</label>
+      </div>
+      <div class="col-7">
+        <textarea id="description" name="description" class="form-control" placeholder="請填入餐廳簡介..." rows="5"></textarea>
+      </div>
+    </div>
+
+    <div class="row mt-3 justify-content-center">
+      <div class="col-4 pe-0 text-end">
+        <a class="btn btn-primary" href="/">返回首頁</a>
+      </div>
+      <div class="col-5 me-0 mb-5 text-end">
+        <button type="submit" class="btn btn-success">確認新增</button>
+      </div>
+    </div>
+
+  </form>
+</div>

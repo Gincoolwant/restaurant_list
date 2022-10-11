@@ -35,6 +35,19 @@ header {
   color: #9b4b4b;
 }
 
+#tool-bar{
+  text-align: end;
+}
+
+#createBtn{
+  box-shadow: 3px 3px 10px #aaaaaa; 
+}
+
+#createBtn:hover{
+  transition: 1s;
+  transform: scale(108%);
+}
+
 .form-control::placeholder {
   color: #aaaaaa;
   font-size: 0.8rem;
@@ -55,7 +68,7 @@ header {
 }
 
 .card img {
-  height: 180px;
+  height: 250px;
 }
 
 .card-title {

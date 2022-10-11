@@ -16,9 +16,16 @@
   </div>
 </div>
 
+
+
 <!-- restaurant list -->
-<div class="container mt-5">
-  <div class="row">
+<div class="container mt-3">
+  <div id="tool-bar">
+    <a class="btn btn-primary" href="/restaurants/new" role="button"  id="createBtn">
+      <i class="fa-solid fa-square-plus"></i><span> 新增餐廳</span>
+    </a>
+  </div>
+  <div class="row mt-3">
     {{#each restaurants}}
     <div class="col-md-4">
       <a href="/restaurants/{{this._id}}" class="text-secondary">
