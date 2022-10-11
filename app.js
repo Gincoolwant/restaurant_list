@@ -4,7 +4,9 @@ const port = 3000
 const restaurantList = require('./restaurant.json')
 
 // 使用Mongoose與MongoDB連線
+// 載入 mongoose
 const mongoose = require('mongoose')
+// 設定連線到 mongoDB
 mongoose.connect(process.env.MONGODB_URI_restaurant_list, { useNewUrlParser: true, useUnifiedTopology: true })
 // 取得連線資訊
 const db = mongoose.connection

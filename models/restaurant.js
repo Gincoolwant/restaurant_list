@@ -1,4 +1,4 @@
-const mangoose = require('mongoose')
+const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 const restaurantSchema = new Schema({
   "id": {
@@ -42,3 +42,5 @@ const restaurantSchema = new Schema({
     required: true // 這是個必填欄位
   }
 })
+
+module.exports = mongoose.model('Restaurant', restaurantSchema)
