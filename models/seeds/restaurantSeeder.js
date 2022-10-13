@@ -1,15 +1,9 @@
 // 載入 mongoose & model
-const mongoose = require('mongoose')
 const Restaurant = require('../restaurant')
 const restaurantList = require('../../restaurant.json').results
-// 設定連線到 mongoDB
-mongoose.connect(process.env.MONGODB_URI_restaurant_list, { useNewUrlParser: true, useUnifiedTopology: true })
-// 取得連線資訊
-const db = mongoose.connection
-// 監聽連線狀況
-db.on('error', () => console.log('mongodb error'))
+const db = require('../../config/mongoose')
+
 db.once('open', () => {
-  console.log('mongodb is connecting')
   restaurantList.forEach(restaurant => {
     Restaurant.create({
        id: `${restaurant.id}`,
@@ -24,4 +18,7 @@ db.once('open', () => {
        description: `${restaurant.description}`
     })
   });
+
+  console.log('Seeder is ready.')
+
 })
