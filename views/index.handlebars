@@ -45,10 +45,10 @@
 
           </div>
           <div class="card-footer text-end pe-2">
-            <a href="/restaurants/{{ this._id }}/edit" class="btn btn-warning me-2">Edit</a>
-            <a href="/restaurants/{{this._id}}" class="btn btn-warning me-2">Detail</a>
             <form action="/restaurants/{{this._id}}?_method=delete" method="post">
-              <button type="submit" class="btn btn-danger">Delete</button>
+              <a href="/restaurants/{{ this._id }}/edit" class="btn btn-sm btn-warning me-2">Edit</a>
+              <a href="/restaurants/{{this._id}}" class="btn btn-sm btn-warning me-2">Detail</a>
+              <button type="submit" class="btn btn-sm btn-danger">Delete</button>
             </form>
           </div>
         </div>
