@@ -21,7 +21,7 @@
 <!-- restaurant list -->
 <div class="container mt-3">
   <div id="tool-bar">
-    <a class="btn btn-warning text-black" href="/restaurants/new" role="button"  id="createBtn">
+    <a class="btn btn-warning text-black" href="/restaurants/new" role="button" id="createBtn">
       <i class="fa-solid fa-square-plus"></i><span> 新增餐廳</span>
     </a>
   </div>
@@ -47,11 +47,13 @@
           <div class="card-footer text-end pe-2">
             <a href="/restaurants/{{ this._id }}/edit" class="btn btn-warning me-2">Edit</a>
             <a href="/restaurants/{{this._id}}" class="btn btn-warning me-2">Detail</a>
-            <a href="/restaurants/{{this._id}}/delete" class="btn btn-danger">Delete</a>
+            <form action="/restaurants/{{this._id}}?_method=delete" method="post">
+              <button type="submit" class="btn btn-danger">Delete</button>
+            </form>
           </div>
         </div>
       </a>
-      
+
     </div>
     {{/each}}
   </div>

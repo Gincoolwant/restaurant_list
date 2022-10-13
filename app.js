@@ -27,6 +27,9 @@ const bodyParser = require('body-parser')
 // 用 app.use 規定每一筆請求都需要透過 body-parser 進行前置處理
 app.use(bodyParser.urlencoded({ extended: true }))
 
+const methodOverride = require('method-override')
+app.use(methodOverride('_method'))
+
 app.get('/', (req, res) => {
   // render所有restaurants
   return Restaurant.find()
@@ -72,7 +75,7 @@ app.get('/restaurants/:restaurant_id/edit', (req, res) => {
     .catch(error => console.error(error))
 })
 
-app.post('/restaurants/:restaurant_id/edit', (req, res) => {
+app.put('/restaurants/:restaurant_id', (req, res) => {
   const restaurantId = req.params.restaurant_id
   // render特定_id restaurant show頁面 
   return Restaurant.findById(restaurantId)
@@ -92,7 +95,7 @@ app.post('/restaurants/:restaurant_id/edit', (req, res) => {
     .catch(error => console.error(error))
 })
 
-app.get('/restaurants/:restaurant_id/delete', (req, res) => {
+app.delete('/restaurants/:restaurant_id', (req, res) => {
   const restaurantId = req.params.restaurant_id
   // render特定_id restaurant show頁面 
   return Restaurant.findById(restaurantId)
