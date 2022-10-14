@@ -8,7 +8,7 @@ router.get('/new', (req, res) => {
 
 router.get('/:restaurant_id', (req, res) => {
   const restaurantId = req.params.restaurant_id
-  // render特定_id restaurant show頁面 
+  // render特定_id restaurant show頁面
   return Restaurant.findById(restaurantId)
     .lean()
     .then(restaurant => res.render('show', { restaurant }))
@@ -17,7 +17,7 @@ router.get('/:restaurant_id', (req, res) => {
 
 router.get('/:restaurant_id/edit', (req, res) => {
   const restaurantId = req.params.restaurant_id
-  // render特定_id restaurant show頁面 
+  // render特定_id restaurant show頁面
   return Restaurant.findById(restaurantId)
     .lean()
     .then(restaurant => res.render('edit', { restaurant }))
@@ -26,7 +26,7 @@ router.get('/:restaurant_id/edit', (req, res) => {
 
 router.put('/:restaurant_id', (req, res) => {
   const restaurantId = req.params.restaurant_id
-  // render特定_id restaurant show頁面 
+  // render特定_id restaurant show頁面
   return Restaurant.findById(restaurantId)
     .then(restaurant => {
       restaurant.name = req.body.name
@@ -46,10 +46,10 @@ router.put('/:restaurant_id', (req, res) => {
 
 router.delete('/:restaurant_id', (req, res) => {
   const restaurantId = req.params.restaurant_id
-  // render特定_id restaurant show頁面 
+  // render特定_id restaurant show頁面
   return Restaurant.findById(restaurantId)
     .then(restaurant => restaurant.remove())
-    .then(() => res.redirect(`/`))
+    .then(() => res.redirect('/'))
     .catch(error => console.error(error))
 })
 

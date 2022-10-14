@@ -33,16 +33,14 @@ router.get('/search', (req, res) => {
       // 先打包所有restaurants再過濾包含keyword的list
       const filterRestaurants = restaurants.filter(restaurant => restaurant.name.toLowerCase().includes(keyword.toLowerCase()) || restaurant.category.includes(keyword))
 
-      // render搜尋結果，若無符合結果render無符合頁面 
+      // render搜尋結果，若無符合結果render無符合頁面
       if (filterRestaurants.length) {
         res.render('index', { restaurants: filterRestaurants, keyword })
       } else {
         res.render('noMatchCase', { keyword })
       }
-
     })
     .catch(error => console.error(error))
-
 })
 
 module.exports = router

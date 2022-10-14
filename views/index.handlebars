@@ -16,15 +16,23 @@
   </div>
 </div>
 
+  <div class="container d-flex justify-content-end">
+    <div id="sortSelector">
+      <form action="/">
+      <select class="form-select form-select-sm col mt-3">
+        <option selected>排序方式</option>
+        <option value="asc">A->Z</option>
+        <option value="desc">Z->A</option>
+        <option value="category">類別</option>
+        <option value="location">地區</option>
+      </select>
+      </form>
+    </div>
+  </div>
 
 
 <!-- restaurant list -->
 <div class="container mt-3">
-  <div id="tool-bar">
-    <a class="btn btn-warning text-black" href="/restaurants/new" role="button" id="createBtn">
-      <i class="fa-solid fa-square-plus"></i><span> 新增餐廳</span>
-    </a>
-  </div>
   <div class="row mt-3">
     {{#each restaurants}}
     <div class="col-sm-4">

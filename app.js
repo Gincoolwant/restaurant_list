@@ -18,5 +18,5 @@ app.use(methodOverride('_method'))
 app.use(routes)
 
 app.listen(port, () => {
-  console.log(`connecting to http://localhost:3000`)
+  console.log('connecting to http://localhost:3000')
 })
