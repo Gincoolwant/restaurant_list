@@ -16,20 +16,22 @@
   </div>
 </div>
 
-  <div class="container d-flex justify-content-end">
-    <div id="sortSelector">
-      <form action="/">
-      <select class="form-select form-select-sm col mt-3">
-        <option selected>排序方式</option>
-        <option value="asc">A->Z</option>
-        <option value="desc">Z->A</option>
-        <option value="category">類別</option>
-        <option value="location">地區</option>
-      </select>
-      </form>
+<div class="container d-flex justify-content-end">
+  <div id="sortSelector">
+    <div class="dropdown">
+      <a class="btn btn-outline-danger dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+        data-bs-toggle="dropdown" aria-expanded="false">
+        排序方法{{#if title}}({{title}}){{/if}}
+      </a>
+      <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+        <li><a class="dropdown-item" href="/search?keyword={{ keyword }}&sort=name&order=asc&title=A->Z">A to Z</a></li>
+        <li><a class="dropdown-item" href="/search?keyword={{ keyword }}&sort=name&order=desc&title=Z->A">Z to A</a></li>
+        <li><a class="dropdown-item" href="/search?keyword={{ keyword }}&sort=category&order=asc&title=類別">類別</a></li>
+        <li><a class="dropdown-item" href="/search?keyword={{ keyword }}&sort=location&order=asc&title=地區">地區</a></li>
+      </ul>
     </div>
   </div>
-
+</div>
 
 <!-- restaurant list -->
 <div class="container mt-3">
