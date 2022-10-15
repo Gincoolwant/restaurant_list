@@ -33,6 +33,11 @@
 + [Express-Handlebars@3.0.0](https://www.npmjs.com/package/express-handlebars)
 + [Bootstrap@v5.2](https://getbootstrap.com/)
 + [Font-awesome@6.2.0](https://fontawesome.com/)
++ [Body-parser@1.20.1](https://www.npmjs.com/package/body-parser)
++ [Method-override@3.0.0](https://www.npmjs.com/package/method-override)
++ [MongoDB Cloud](https://www.mongodb.com/)
++ [Mongoose@5.9.7](https://mongoosejs.com/)
+
 
 ## 開發人員
 [CK](https://github.com/Gincoolwant)
