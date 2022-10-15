@@ -5,6 +5,7 @@
 ![show](./public/images/show.png)
 ![create](./public/images/create.png)
 ![edit](./public/images/edit.png)
+![sorting](./public/images/sorting.png)
 
 ## 功能詳情
 + 可在首頁看到附有簡易資訊(店名、餐廳類型、評分)的餐廳清單列表。
@@ -13,6 +14,7 @@
 + 可新增餐廳。
 + 可編輯餐廳內容。
 + 可刪除餐廳。
++ 可依店名(升降冪)、類型、地區排序。
 
 ## 安裝執行
 1. 確認安裝node.js & npm。
