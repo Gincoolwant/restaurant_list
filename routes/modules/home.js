@@ -10,19 +10,8 @@ router.get('/', (req, res) => {
     .catch(error => console.error(error))
 })
 
-router.post('/new', (req, res) => {
-  return Restaurant.create({
-    name: req.body.name,
-    category: req.body.category,
-    image: req.body.image ? req.body.image : 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/450px-No_image_available.svg.png',
-    location: req.body.location,
-    phone: req.body.phone,
-    google_map: req.body.google_map,
-    rating: req.body.rating,
-    description: req.body.description
-  })
-    .then(() => res.redirect('/'))
-    .catch(error => console.error(error))
+router.get('/new', (req, res) => {
+  return res.render('new')
 })
 
 router.get('/search', (req, res) => {
