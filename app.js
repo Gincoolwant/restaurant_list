@@ -5,6 +5,10 @@ const methodOverride = require('method-override')
 const session = require('express-session')
 const flash = require('connect-flash')
 
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').config()
+}
+
 const usePassport = require('./config/passport') // 會用到session, 一定要放在express-session之後
 const routes = require('./routes')
 require('./config/mongoose')
