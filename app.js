@@ -19,7 +19,11 @@ app.use(methodOverride('_method')) // 為使用符合RESTful API的PUT、DELETE�
 app.use(session({ secret: 'ckSecret', resave: false, saveUninitialized: true })) // 設定session
 
 usePassport(app) // 前置設置認證策略
-
+app.use((req, res, next) =>{
+  res.locals.isAuthenticated = req.isAuthenticated()
+  res.locals.user = req.user
+  next()
+})
 app.use(routes) // 導至總路由
 
 // 監聽server啟動

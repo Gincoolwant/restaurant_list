@@ -39,11 +39,15 @@ header {
   text-align: end;
 }
 
-#createBtn {
+#createBtn,
+#loginBtn,
+#logoutBtn {
   box-shadow: 3px 3px 10px #aaaaaa;
 }
 
-#createBtn:hover {
+#createBtn:hover,
+#loginBtn:hover,
+#logoutBtn:hover {
   transition: 1s;
   transform: scale(108%);
 }
