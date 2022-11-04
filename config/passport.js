@@ -21,7 +21,7 @@ module.exports = app => {
   passport.serializeUser((user, done) => {
     done(null, user.id)
   })
-  // 設定反序列化(session使用session.value(id)到資料庫找完整的info)
+  // 設定反序列化(session使用session.value(id)到資料庫找完整的info存放在req.user)
   passport.deserializeUser((id, done) => {
     User.findById(id)
       .lean()
