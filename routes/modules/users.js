@@ -1,5 +1,6 @@
 const express = require('express')
 const passport = require('passport')
+const bcrypt = require('bcryptjs')
 const router = express.Router()
 const User = require('../../models/user.js')
 
@@ -18,8 +19,10 @@ router.post('/register', (req, res) => {
     errors.push({ message: '兩次密碼輸入不相符。' })
   }
   if (errors.length) {
-    return res.render('register', {name, email, password, confirmPassword, errors})
+    return res.render('register', { name, email, password, confirmPassword, errors })
   }
+
+
 
   // 檢查是否已註冊
   User.findOne({ email })
@@ -30,11 +33,13 @@ router.post('/register', (req, res) => {
         return res.render('register', { name, email, password, confirmPassword, errors })
       }
       // 未註冊: 資料庫新增使用者後重導至登入頁
-      return User.create({
-        name,
-        email,
-        password
-      })
+      return bcrypt.genSalt(10)
+        .then(salt => bcrypt.hash(password, salt))
+        .then(hash => User.create({
+          name,
+          email,
+          password: hash
+        }))
         .then(() => res.redirect('/users/login'))
         .catch(err => console.log(err))
     })
