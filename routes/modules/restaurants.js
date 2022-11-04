@@ -42,7 +42,7 @@ router.put('/:restaurant_id', (req, res) => {
   const userId = req.user._id
   const _id = req.params.restaurant_id
   // render特定_id restaurant show頁面
-  return Restaurant.findOne({ _id, userId})
+  return Restaurant.findOne({ _id, userId })
     .then(restaurant => {
       restaurant.name = req.body.name
       restaurant.category = req.body.category
@@ -63,7 +63,7 @@ router.delete('/:restaurant_id', (req, res) => {
   const userId = req.user._id
   const _id = req.params.restaurant_id
   // render特定_id restaurant show頁面
-  return Restaurant.findOne({ _id, userId})
+  return Restaurant.findOne({ _id, userId })
     .then(restaurant => restaurant.remove())
     .then(() => res.redirect('/'))
     .catch(error => console.error(error))
