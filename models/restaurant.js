@@ -30,6 +30,12 @@ const restaurantSchema = new Schema({
   },
   description: {
     type: String // 資料型別
+  },
+  userId: {
+    type: Schema.Types.ObjectId,
+    ref: 'User',
+    index: true,
+    required: true
   }
 })
 

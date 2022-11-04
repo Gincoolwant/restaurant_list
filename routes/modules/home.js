@@ -3,8 +3,9 @@ const router = express.Router()
 const Restaurant = require('../../models/restaurant')
 
 router.get('/', (req, res) => {
+  const userId = req.user._id
   // render所有restaurants
-  return Restaurant.find()
+  return Restaurant.find({ userId })
     .lean()
     .then(restaurants => res.render('index', { restaurants }))
     .catch(error => console.error(error))
@@ -15,8 +16,9 @@ router.get('/new', (req, res) => {
 })
 
 router.get('/search', (req, res) => {
+  const userId = req.user._id
   const {keyword, sort, order, title} = req.query
-  return Restaurant.find()
+  return Restaurant.find({ userId })
     .sort({[sort] : order})
     .lean()
     .then(restaurants => {
