@@ -24,7 +24,7 @@
 ![sorting](./public/images/sorting.png)
 
 使用者註冊頁
-![register](./public/images/regiser.png)
+![register](./public/images/register.png)
 
 使用者登入頁
 ![login](./public/images/login.png)
