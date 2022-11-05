@@ -1,23 +1,67 @@
-// 載入 mongoose & model
-const Restaurant = require('../restaurant')
-const restaurantList = require('../../restaurant.json').results
+const bcrypt = require('bcryptjs')
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').config()
+}
+const Restaurant = require('../restaurant.js')
+const User = require('../user.js')
+const restaurantList = require('../seeds/restaurants.json').results
+const userList = require('../seeds/users.json').results
 const db = require('../../config/mongoose')
+const restaurant = require('../restaurant.js')
 
 db.once('open', () => {
-  restaurantList.forEach(restaurant => {
-    Restaurant.create({
-      id: `${restaurant.id}`,
-      name: `${restaurant.name}`,
-      name_en: `${restaurant.name_en}`,
-      category: `${restaurant.category}`,
-      image: `${restaurant.image}`,
-      location: `${restaurant.location}`,
-      phone: `${restaurant.phone}`,
-      google_map: `${restaurant.google_map}`,
-      rating: `${restaurant.rating}`,
-      description: `${restaurant.description}`
+  Promise.all(
+    userList.map(user => {
+      const { email, password, restaurantIndex } = user
+      return bcrypt.genSalt(10)
+        .then(salt => bcrypt.hash(password, salt))
+        .then(hash => User.create({
+          email,
+          password: hash
+        }))
+        .then(user => {
+          const userId = user._id
+          const restaurants = restaurantList.filter(restaurant => {
+            restaurant.userId = userId
+            return restaurantIndex.includes(restaurant.id)
+          })
+          return Restaurant.create(restaurants)
+        })
+        .catch(err => console.log(err))
     })
-  })
-
-  console.log('Seeder is ready.')
+  )
+    .then(() => {
+      console.log('Seeder is ready.')
+      process.exit()
+    })
 })
+
+  // db.once('open', () => {
+  //   userList.forEach(user => {
+  //     const { email, password, restaurantIndex } = user
+  //     bcrypt
+  //       .genSalt(10)
+  //       .then(salt => bcrypt.hash(password, salt))
+  //       .then(hash => User.create({
+  //         email,
+  //         password: hash
+  //       }))
+  //       .then(user => {
+  //         const userId = user._id
+  //         const restaurants = restaurantList.filter(restaurant => {
+  //           restaurant.userId = userId
+  //           return restaurantIndex.includes(restaurant.id)
+  //         })
+  //         return Promise.all(Array.from({ length: restaurantIndex.length },
+  //           (_, i) => { Restaurant.create(restaurants[i]) }))
+  //       })
+  //       .then(() => {
+  //         console.log('ok')
+  //         // process.exit()
+  //       })
+  //   })
+
+
+// })
+
+

@@ -45,6 +45,7 @@ router.put('/:restaurant_id', (req, res) => {
   return Restaurant.findOne({ _id, userId })
     .then(restaurant => {
       restaurant.name = req.body.name
+      restaurant.name_en = req.body.name_en
       restaurant.category = req.body.category
       restaurant.image = req.body.image ? req.body.image : 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/450px-No_image_available.svg.png'
       restaurant.location = req.body.location
