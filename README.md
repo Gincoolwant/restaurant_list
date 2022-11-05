@@ -89,7 +89,7 @@ email: user2@example.com
 password: 12345678
 ```
 
-## 開發環境與工具
+# 開發環境與工具
 + [Visual Studio Code](https://visualstudio.microsoft.com/zh-hant/)
 + [Node.js@16.17.0](https://nodejs.org/en/)
 + [Express@4.16.4](https://www.npmjs.com/package/express)
@@ -110,5 +110,5 @@ password: 12345678
 + [passport-facebook@3.0.0](https://www.passportjs.org/)
 + [passport-google-oauth20@2.0.0](https://www.passportjs.org/)
 
-## 開發人員
+# 開發人員
 [CK](https://github.com/Gincoolwant)
