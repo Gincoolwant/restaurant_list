@@ -17,17 +17,19 @@ router.get('/new', (req, res) => {
 
 router.get('/search', (req, res) => {
   const userId = req.user._id
-  const {keyword, sort, order, title} = req.query
-  return Restaurant.find({ userId })
-    .sort({[sort] : order})
+  const { sort, order, title } = req.query
+  const keyword = req.query.keyword.trim()
+  const keywordRegExp = new RegExp(req.query.keyword.trim(), 'i')
+  return Restaurant.find({
+    userId, 
+    $or: [{ name: keywordRegExp }, { category: keywordRegExp }]
+  })
+    .sort({ [sort]: order })
     .lean()
     .then(restaurants => {
-      // 先打包所有restaurants再過濾包含keyword的list
-      const filterRestaurants = restaurants.filter(restaurant => restaurant.name.toLowerCase().includes(keyword.toLowerCase()) || restaurant.category.includes(keyword))
-
       // render搜尋結果，若無符合結果render無符合頁面
-      if (filterRestaurants.length) {
-        res.render('index', { restaurants: filterRestaurants, keyword, title})
+      if (restaurants.length) {
+        res.render('index', { restaurants , keyword, title})
       } else {
         res.render('noMatchCase', { keyword })
       }

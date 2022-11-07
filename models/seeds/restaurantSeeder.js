@@ -36,32 +36,4 @@ db.once('open', () => {
     })
 })
 
-  // db.once('open', () => {
-  //   userList.forEach(user => {
-  //     const { email, password, restaurantIndex } = user
-  //     bcrypt
-  //       .genSalt(10)
-  //       .then(salt => bcrypt.hash(password, salt))
-  //       .then(hash => User.create({
-  //         email,
-  //         password: hash
-  //       }))
-  //       .then(user => {
-  //         const userId = user._id
-  //         const restaurants = restaurantList.filter(restaurant => {
-  //           restaurant.userId = userId
-  //           return restaurantIndex.includes(restaurant.id)
-  //         })
-  //         return Promise.all(Array.from({ length: restaurantIndex.length },
-  //           (_, i) => { Restaurant.create(restaurants[i]) }))
-  //       })
-  //       .then(() => {
-  //         console.log('ok')
-  //         // process.exit()
-  //       })
-  //   })
-
-
-// })
-
 
