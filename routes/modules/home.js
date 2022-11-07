@@ -19,7 +19,7 @@ router.get('/search', (req, res) => {
   const userId = req.user._id
   const { sort, order, title } = req.query
   const keyword = req.query.keyword.trim()
-  const keywordRegExp = new RegExp(req.query.keyword.trim(), 'i')
+  const keywordRegExp = new RegExp(keyword, 'i')
   return Restaurant.find({
     userId, 
     $or: [{ name: keywordRegExp }, { category: keywordRegExp }]
